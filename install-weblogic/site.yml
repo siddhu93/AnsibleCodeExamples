@@ -1,0 +1,5 @@
+---
+- hosts: weblogic-test 
+  remote_user: rgaddam
+  roles: 
+  - weblogic-jdk

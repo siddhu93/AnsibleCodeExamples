@@ -1,0 +1,5 @@
+---
+# JDK installer and target folder
+
+jdk_installation_archive: 'jdk-8u91-linux-x64.tar.gz'
+jdk_folder: '/apps/oracle/java/jdk1.8.0_91'

@@ -1,0 +1,15 @@
+---
+
+#  - name: jdk archive to host
+#    copy: src= '{{ jdk_installation_archive }}' dest='~/{{ jdk_installation_archive }}' force=no  owner=root group=root mode=0755 recurse=yes
+
+- name: copy jdk archive to host 
+  copy: src=files/jdk-8u91-linux-x64.tar.gz dest=/apps/oracle/java/jdk1.8.0_91 force=no owner=root group=root mode=0755 recurse=yes 
+
+- name: Extract JDK archive
+  command: 'tar -xf ~/{{ jdk_installation_archive }} -C {{ oracle_base }}'
+  args:
+    creates: "{{ jdk_folder }}"
+
+- name: Create Java bash profile script
+  copy: dest=/etc/profile.d/java.sh mode=0755 content="JAVA_HOME=/usr/java/default\nexport JAVA_HOME\nexport PATH=$PATH:$JAVA_HOME/bin"
