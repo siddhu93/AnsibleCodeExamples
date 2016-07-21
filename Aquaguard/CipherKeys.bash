@@ -10,13 +10,12 @@ do
   for keysize in "${KEYSIZE[@]}"
   do
     echo "Creating ${keyname} pem file using ${keysize}..."
-    openssl req -x509 -sha256 \
-    -nodes
+    openssl req -x509 -sha256 -nodes \
     -subj "/C=US/ST=Pennsylvania/L=Malvern/O=test Corp/CN=10.151.6.227.cct0.vanguard.com" \
     -days 365 \
     -newkey ${keyname}:{keysize} \
-    -keyout  ${KEYNAME}-${KEYSIZE}.key \
-    -out ${KEYNAME}-${KEYSIZE}.pem
+    -keyout  /cm/keys/${KEYNAME}-${KEYSIZE}.key \
+    -out /cm/keys/${KEYNAME}-${KEYSIZE}.pem
   done
   echo "${KEYNAME}-${KEYSIZE}.key and ${KEYNAME}-${KEYSIZE}.pem created in /cm/keys directory."
   sleep 2
